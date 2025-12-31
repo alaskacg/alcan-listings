@@ -67,7 +67,7 @@ export default {
           slate: "hsl(var(--mountain-slate))",
           steel: "hsl(var(--mountain-steel))",
           granite: "hsl(var(--mountain-granite))",
-          copper: "hsl(var(--mountain-copper))",
+          gold: "hsl(var(--mountain-gold))",
           mist: "hsl(var(--mountain-mist))",
         },
         charcoal: "hsl(var(--charcoal))",

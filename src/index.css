@@ -25,7 +25,7 @@
     --muted: 220 15% 14%;
     --muted-foreground: 210 15% 60%;
 
-    --accent: 35 85% 55%;
+    --accent: 43 70% 40%;
     --accent-foreground: 220 20% 8%;
 
     --destructive: 0 84% 60%;
@@ -41,7 +41,7 @@
     --mountain-slate: 210 40% 50%;
     --mountain-steel: 215 30% 45%;
     --mountain-granite: 220 15% 35%;
-    --mountain-copper: 35 85% 55%;
+    --mountain-gold: 43 70% 40%;
     --mountain-mist: 210 20% 70%;
     --charcoal: 220 20% 8%;
     --snow-peak: 210 30% 96%;
@@ -50,7 +50,7 @@
     /* Gradients - Mountain theme */
     --gradient-mountain: linear-gradient(135deg, hsl(var(--mountain-slate)) 0%, hsl(var(--mountain-steel)) 35%, hsl(var(--mountain-granite)) 65%, hsl(220 20% 25%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(220 20% 12%) 0%, hsl(220 20% 8%) 100%);
-    --gradient-copper: linear-gradient(135deg, hsl(35 85% 55%) 0%, hsl(25 80% 45%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(43 70% 40%) 0%, hsl(38 65% 32%) 100%);
 
     /* Shadows */
     --shadow-glow: 0 0 60px hsl(var(--mountain-slate) / 0.3);
@@ -87,7 +87,7 @@
     --muted: 210 15% 94%;
     --muted-foreground: 220 15% 45%;
 
-    --accent: 35 90% 50%;
+    --accent: 43 65% 38%;
     --accent-foreground: 220 25% 15%;
 
     --destructive: 0 84% 50%;
@@ -101,7 +101,7 @@
     --mountain-slate: 210 50% 45%;
     --mountain-steel: 215 40% 40%;
     --mountain-granite: 220 20% 40%;
-    --mountain-copper: 35 90% 50%;
+    --mountain-gold: 43 65% 38%;
     --mountain-mist: 210 25% 55%;
     --charcoal: 220 25% 15%;
     --snow-peak: 210 25% 97%;
@@ -110,7 +110,7 @@
     /* Gradients - Light */
     --gradient-mountain: linear-gradient(135deg, hsl(var(--mountain-slate)) 0%, hsl(var(--mountain-steel)) 35%, hsl(var(--mountain-granite)) 65%, hsl(220 25% 30%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 15% 98%) 100%);
-    --gradient-copper: linear-gradient(135deg, hsl(35 90% 50%) 0%, hsl(25 85% 45%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(43 65% 38%) 0%, hsl(38 60% 30%) 100%);
 
     /* Shadows - Light */
     --shadow-glow: 0 0 60px hsl(var(--mountain-slate) / 0.2);
@@ -152,8 +152,8 @@
     background-clip: text;
   }
 
-  .text-gradient-copper {
-    background: var(--gradient-copper);
+  .text-gradient-gold {
+    background: var(--gradient-gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -181,8 +181,8 @@
     box-shadow: 0 0 40px hsl(var(--mountain-slate) / 0.4);
   }
 
-  .glow-copper {
-    box-shadow: 0 0 40px hsl(var(--mountain-copper) / 0.4);
+  .glow-gold {
+    box-shadow: 0 0 40px hsl(var(--mountain-gold) / 0.4);
   }
 
   .mountain-bg {
@@ -301,7 +301,7 @@
     90deg,
     hsl(var(--foreground)) 0%,
     hsl(var(--mountain-slate)) 25%,
-    hsl(var(--mountain-copper)) 50%,
+    hsl(var(--mountain-gold)) 50%,
     hsl(var(--mountain-slate)) 75%,
     hsl(var(--foreground)) 100%
   );
