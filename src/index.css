@@ -1,0 +1,319 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  /* Dark Mode (Default - Aurora Borealis Theme) */
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 173 80% 40%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 30% 15%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 30% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 45 93% 58%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 18%;
+    --ring: 173 80% 40%;
+
+    --radius: 0.75rem;
+
+    /* Custom Alaska theme colors - Dark (No purple) */
+    --aurora-teal: 173 80% 40%;
+    --aurora-cyan: 185 75% 45%;
+    --aurora-green: 160 70% 35%;
+    --aurora-gold: 45 93% 58%;
+    --aurora-deep: 200 60% 30%;
+    --midnight: 222 47% 6%;
+    --glacier: 200 30% 85%;
+    --snow: 210 40% 98%;
+
+    /* Gradients (No purple) */
+    --gradient-aurora: linear-gradient(135deg, hsl(var(--aurora-teal)) 0%, hsl(var(--aurora-cyan)) 35%, hsl(var(--aurora-green)) 65%, hsl(var(--aurora-deep)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(222 47% 10%) 0%, hsl(222 47% 6%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45 93% 58%) 0%, hsl(35 90% 50%) 100%);
+
+    /* Shadows */
+    --shadow-glow: 0 0 60px hsl(var(--aurora-teal) / 0.3);
+    --shadow-card: 0 10px 40px hsl(0 0% 0% / 0.4);
+    --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.5);
+
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 173 80% 40%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 30% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 30% 18%;
+    --sidebar-ring: 173 80% 40%;
+  }
+
+  /* Light Mode - Clean Alaska Daylight Theme */
+  .light {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 173 70% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 20% 94%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 200 20% 96%;
+    --muted-foreground: 222 20% 45%;
+
+    --accent: 45 93% 50%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 20% 88%;
+    --input: 200 20% 88%;
+    --ring: 173 70% 35%;
+
+    /* Custom Alaska theme colors - Light (No purple) */
+    --aurora-teal: 173 70% 35%;
+    --aurora-cyan: 185 65% 40%;
+    --aurora-green: 160 60% 30%;
+    --aurora-gold: 45 93% 50%;
+    --aurora-deep: 200 50% 35%;
+    --midnight: 222 47% 11%;
+    --glacier: 200 30% 50%;
+    --snow: 210 40% 98%;
+
+    /* Gradients - Light (No purple) */
+    --gradient-aurora: linear-gradient(135deg, hsl(var(--aurora-teal)) 0%, hsl(var(--aurora-cyan)) 35%, hsl(var(--aurora-green)) 65%, hsl(var(--aurora-deep)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(200 20% 98%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45 93% 50%) 0%, hsl(35 90% 45%) 100%);
+
+    /* Shadows - Light */
+    --shadow-glow: 0 0 60px hsl(var(--aurora-teal) / 0.2);
+    --shadow-card: 0 10px 40px hsl(222 47% 11% / 0.08);
+    --shadow-elevated: 0 20px 60px hsl(222 47% 11% / 0.12);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 173 70% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 200 20% 94%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 200 20% 88%;
+    --sidebar-ring: 173 70% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient-aurora {
+    background: var(--gradient-aurora);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-glass {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .bg-glass-light {
+    background: hsl(var(--snow) / 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--snow) / 0.1);
+  }
+
+  .light .bg-glass {
+    background: hsl(var(--card) / 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .glow-teal {
+    box-shadow: 0 0 40px hsl(var(--aurora-teal) / 0.4);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 40px hsl(var(--aurora-gold) / 0.4);
+  }
+
+  .aurora-bg {
+    background: 
+      radial-gradient(ellipse 80% 50% at 20% 40%, hsl(var(--aurora-teal) / 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 60%, hsl(var(--aurora-deep) / 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse 70% 50% at 50% 20%, hsl(var(--aurora-green) / 0.1) 0%, transparent 50%),
+      hsl(var(--background));
+  }
+
+  .light .aurora-bg {
+    background: 
+      radial-gradient(ellipse 80% 50% at 20% 40%, hsl(var(--aurora-teal) / 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 60%, hsl(var(--aurora-deep) / 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse 70% 50% at 50% 20%, hsl(var(--aurora-green) / 0.05) 0%, transparent 50%),
+      hsl(var(--background));
+  }
+}
+
+@layer components {
+  .card-hover {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-2;
+    box-shadow: var(--shadow-elevated), 0 0 60px hsl(var(--aurora-teal) / 0.2);
+  }
+
+  .btn-aurora {
+    @apply relative overflow-hidden transition-all duration-300;
+    background: var(--gradient-aurora);
+    background-size: 200% 200%;
+  }
+
+  .btn-aurora:hover {
+    background-size: 300% 300%;
+    box-shadow: var(--shadow-glow);
+  }
+
+  .mountain-mask {
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23000' d='M0,320L60,288C120,256,240,192,360,181.3C480,171,600,213,720,224C840,235,960,213,1080,181.3C1200,149,1320,107,1380,85.3L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: cover;
+    mask-position: bottom;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 20px hsl(var(--aurora-teal) / 0.5), 0 0 40px hsl(var(--aurora-teal) / 0.3);
+  }
+  50% {
+    text-shadow: 0 0 30px hsl(var(--aurora-teal) / 0.7), 0 0 60px hsl(var(--aurora-teal) / 0.4);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--foreground)) 0%,
+    hsl(var(--aurora-teal)) 25%,
+    hsl(var(--aurora-gold)) 50%,
+    hsl(var(--aurora-teal)) 75%,
+    hsl(var(--foreground)) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
