@@ -6,10 +6,12 @@ import EcosystemSites from "@/components/EcosystemSites";
 import CTASection from "@/components/CTASection";
 import TrustIndicators from "@/components/TrustIndicators";
 import AlcanNewsPromo from "@/components/AlcanNewsPromo";
+import SEOHead from "@/components/SEOHead";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead />
       <Header />
       <main>
         <HeroSection />
