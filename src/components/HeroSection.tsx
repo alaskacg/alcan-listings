@@ -34,7 +34,7 @@ const HeroSection = () => {
 
           {/* Animated Tagline - Below title */}
           <div className="mb-8 opacity-0 animate-fade-in" style={{ animationDelay: '400ms', animationFillMode: 'forwards' }}>
-            <p className="font-sans text-sm sm:text-base md:text-lg tracking-[0.2em] uppercase animate-shimmer font-medium">
+            <p className="font-sans text-sm sm:text-base md:text-lg tracking-[0.2em] uppercase font-medium text-primary/90 animate-pulse-glow">
               Interior Alaska's Premier Private Listings Marketplace
             </p>
           </div>
@@ -70,7 +70,7 @@ const HeroSection = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-slide-up" style={{ animationDelay: '800ms', animationFillMode: 'forwards' }}>
             <Link to="/browse">
-              <Button variant="aurora" size="lg" className="group">
+              <Button variant="aurora" size="lg" className="group text-white font-semibold shadow-lg">
                 Browse Listings
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>

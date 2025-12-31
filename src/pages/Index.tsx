@@ -5,6 +5,7 @@ import RecentListings from "@/components/RecentListings";
 import EcosystemSites from "@/components/EcosystemSites";
 import CTASection from "@/components/CTASection";
 import TrustIndicators from "@/components/TrustIndicators";
+import AlcanNewsPromo from "@/components/AlcanNewsPromo";
 
 const Index = () => {
   return (
@@ -14,6 +15,7 @@ const Index = () => {
         <HeroSection />
         <TrustIndicators />
         <EcosystemSites />
+        <AlcanNewsPromo />
         <RecentListings />
         <CTASection />
       </main>
