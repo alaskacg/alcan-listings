@@ -2,14 +2,21 @@ import { ExternalLink, Globe, Mountain } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const ecosystemSites = [
+  // Parent/Statewide
   { name: "Alaska Listings", url: "https://aklistings.com", description: "Statewide Marketplace", featured: true },
+  // Regional Sister Sites
+  { name: "Kenai Listings", url: "https://kenailistings.com", description: "Kenai Peninsula" },
+  { name: "Chugach Listings", url: "https://chugachlistings.com", description: "Chugach Region" },
+  { name: "Tongass Listings", url: "https://tongasslistings.com", description: "Southeast Alaska" },
+  { name: "Anchorage Listings", url: "https://anclistings.com", description: "Anchorage Metro" },
+  { name: "Wasilla Listings", url: "https://wasillalistings.com", description: "Mat-Su Valley" },
+  { name: "Prudhoe Listings", url: "https://prudhoelistings.com", description: "North Slope" },
+  { name: "Bristol Bay Listings", url: "https://bblistings.com", description: "Bristol Bay Region" },
+  { name: "Bethel Listings", url: "https://bethellistings.com", description: "Yukon-Kuskokwim Delta" },
+  // Specialty Sites
   { name: "Alaska Mining Equipment", url: "https://alaskaminingequipment.com", description: "Mining & Prospecting" },
   { name: "Alaskan Boats", url: "https://alaskanboats.com", description: "Boats & Watercraft" },
-  { name: "Alaska Digs", url: "https://alaskadigs.com", description: "Excavation Equipment" },
   { name: "Alaska Guide Listings", url: "https://alaskaguidelistings.com", description: "Guide Services" },
-  { name: "Kenai Auto Sales", url: "https://kenaiautosales.com", description: "Vehicles" },
-  { name: "Kenai Home Sales", url: "https://kenaihomesales.com", description: "Real Estate" },
-  { name: "Kenai Land Sales", url: "https://kenailandsales.com", description: "Land & Property" },
 ];
 
 const EcosystemSites = () => {

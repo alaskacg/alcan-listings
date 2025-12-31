@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, MapPin, User, LogOut, ChevronDown } from "lucide-react";
+import { Menu, X, User, LogOut, ChevronDown } from "lucide-react";
+import MountainLogo from "@/components/MountainLogo";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
 import { useAuth } from "@/contexts/AuthContext";
@@ -51,9 +52,7 @@ const Header = () => {
           <div className="flex items-center justify-between h-14 md:h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <MapPin className="w-4 h-4 text-primary-foreground" />
-              </div>
+              <MountainLogo />
               <span className="font-display text-base font-bold text-foreground">Alcan Listings</span>
             </Link>
 
