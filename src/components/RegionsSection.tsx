@@ -2,71 +2,59 @@ import RegionCard from "./RegionCard";
 
 const regions = [
   {
-    name: "Kenai Peninsula",
-    description: "From Seward to Homer, find local deals",
-    href: "https://kenailistings.com",
-    external: true,
+    name: "Fairbanks/North Star",
+    description: "Fairbanks, North Pole, and surrounding communities",
+    href: "/browse?region=fairbanks",
+    external: false,
   },
   {
-    name: "Anchorage Area",
-    description: "Anchorage, Eagle River, and Mat-Su Valley",
-    href: "https://anchoragelistings.com",
-    external: true,
+    name: "Delta Junction Area",
+    description: "Delta Junction, Big Delta, and Fort Greely area",
+    href: "/browse?region=delta",
+    external: false,
   },
   {
-    name: "Tongass Area",
-    description: "Southeast Alaska's rainforest communities",
-    href: "https://tongasslistings.com",
-    external: true,
+    name: "Tok/Highway Corridor",
+    description: "Tok, Northway, Mentasta, and the border region",
+    href: "/browse?region=tok",
+    external: false,
   },
   {
-    name: "Alcan Corridor",
-    description: "Along the Alaska Highway",
-    href: "https://alcanlistings.com",
-    external: true,
+    name: "Denali Borough",
+    description: "Healy, Anderson, Nenana, and Clear",
+    href: "/browse?region=denali",
+    external: false,
   },
   {
-    name: "Bristol Bay Area",
-    description: "Bristol Bay and surrounding fishing communities",
-    href: "https://bristolbaylistings.com",
-    external: true,
+    name: "Valdez-Cordova Border",
+    description: "Richardson Highway and Glennallen access",
+    href: "/browse?region=valdez-cordova",
+    external: false,
   },
   {
-    name: "Bethel Area",
-    description: "Bethel and the Yukon-Kuskokwim Delta",
-    href: "https://bethellistings.com",
-    external: true,
-  },
-  {
-    name: "Prudhoe Bay Area",
-    description: "North Slope and Arctic communities",
-    href: "https://prudhoebaylistings.com",
-    external: true,
-  },
-  {
-    name: "Chugach Region",
-    description: "Valdez, Cordova, and Prince William Sound",
-    href: "https://chugachlistings.com",
-    external: true,
+    name: "Yukon-Tanana Region",
+    description: "Remote interior villages and river communities",
+    href: "/browse?region=yukon-tanana",
+    external: false,
   },
 ];
 
 const RegionsSection = () => {
   return (
-    <section className="py-20 md:py-28 aurora-bg">
+    <section className="py-20 md:py-28 mountain-bg">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4 opacity-0 animate-slide-up" style={{ animationFillMode: 'forwards' }}>
-            Explore by Region
+            Explore Interior Alaska
           </h2>
           <p className="text-muted-foreground text-base max-w-2xl mx-auto opacity-0 animate-slide-up" style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}>
-            Find listings in your local area across Alaska's diverse regions
+            Find listings across the Alcan corridor and Interior Alaska communities
           </p>
         </div>
 
         {/* Region Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {regions.map((region, index) => (
             <RegionCard
               key={region.name}

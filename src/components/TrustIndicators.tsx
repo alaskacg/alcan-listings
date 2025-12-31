@@ -10,12 +10,12 @@ const TrustIndicators = () => {
     {
       icon: Users,
       title: "Community Driven",
-      description: "Built by Alaskans, for Alaskans",
+      description: "Built by Interior Alaskans, for Interior Alaskans",
     },
     {
       icon: MapPin,
       title: "Local Focus",
-      description: "Regional expertise across all of Alaska",
+      description: "Regional expertise across the Alcan corridor",
     },
     {
       icon: CheckCircle,

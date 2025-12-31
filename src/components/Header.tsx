@@ -21,14 +21,12 @@ import {
 } from "@/components/ui/navigation-menu";
 
 const regions = [
-  { name: "Kenai Peninsula", href: "https://kenailistings.com", description: "Soldotna, Homer, Seward" },
-  { name: "Anchorage Area", href: "https://anchoragelistings.com", description: "Anchorage, Eagle River, Mat-Su" },
-  { name: "Tongass Area", href: "https://tongasslistings.com", description: "Juneau, Ketchikan, Sitka" },
-  { name: "Alcan Corridor", href: "https://alcanlistings.com", description: "Fairbanks, Tok, Delta Junction" },
-  { name: "Bristol Bay Area", href: "https://bristolbaylistings.com", description: "Bristol Bay fishing communities" },
-  { name: "Bethel Area", href: "https://bethellistings.com", description: "Bethel, Y-K Delta region" },
-  { name: "Prudhoe Bay Area", href: "https://prudhoebaylistings.com", description: "North Slope, Arctic coast" },
-  { name: "Chugach Region", href: "https://chugachlistings.com", description: "Valdez, Cordova, PWS" },
+  { name: "Fairbanks/North Star", href: "/regions", description: "Fairbanks and surrounding areas" },
+  { name: "Delta Junction Area", href: "/regions", description: "Delta Junction and Big Delta" },
+  { name: "Tok/Highway Corridor", href: "/regions", description: "Tok, Northway, and border area" },
+  { name: "Denali Borough", href: "/regions", description: "Healy, Anderson, and Nenana" },
+  { name: "Valdez-Cordova Border", href: "/regions", description: "Richardson Highway access" },
+  { name: "Yukon-Tanana Region", href: "/regions", description: "Remote interior communities" },
 ];
 
 const categories = [
@@ -56,7 +54,7 @@ const Header = () => {
               <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
                 <MapPin className="w-4 h-4 text-primary-foreground" />
               </div>
-              <span className="font-display text-base font-bold text-foreground">Alaska Listings</span>
+              <span className="font-display text-base font-bold text-foreground">Alcan Listings</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -70,17 +68,15 @@ const Header = () => {
                         {regions.map((region) => (
                           <li key={region.name}>
                             <NavigationMenuLink asChild>
-                              <a
-                                href={region.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                              <Link
+                                to={region.href}
                                 className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                               >
                                 <div className="text-sm font-medium leading-none">{region.name}</div>
                                 <p className="line-clamp-2 text-xs leading-snug text-muted-foreground mt-1">
                                   {region.description}
                                 </p>
-                              </a>
+                              </Link>
                             </NavigationMenuLink>
                           </li>
                         ))}
@@ -206,15 +202,14 @@ const Header = () => {
               </summary>
               <div className="pl-4 py-2 space-y-2">
                 {regions.map((region) => (
-                  <a
+                  <Link
                     key={region.name}
-                    href={region.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    to={region.href}
                     className="block text-sm text-muted-foreground hover:text-primary py-1"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {region.name}
-                  </a>
+                  </Link>
                 ))}
                 <Link
                   to="/regions"

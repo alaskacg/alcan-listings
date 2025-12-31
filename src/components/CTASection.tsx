@@ -6,8 +6,8 @@ const CTASection = () => {
   return (
     <section className="py-20 md:py-28 relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 aurora-bg" />
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-aurora-teal/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 mountain-bg" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-mountain-slate/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
       
       <div className="relative container mx-auto px-4">
@@ -18,7 +18,7 @@ const CTASection = () => {
           </h2>
           
           <p className="text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
-            Reach thousands of Alaskans looking for exactly what you're selling. No commissions, no hidden fees—just a simple $10 flat rate.
+            Reach thousands of Interior Alaskans looking for exactly what you're selling. No commissions, no hidden fees—just a simple $10 flat rate.
           </p>
 
           {/* Features */}
@@ -40,8 +40,8 @@ const CTASection = () => {
             </div>
             
             <div className="bg-glass rounded-2xl p-6 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-aurora-cyan/10 mb-4">
-                <Image className="w-6 h-6 text-aurora-cyan" />
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-mountain-steel/10 mb-4">
+                <Image className="w-6 h-6 text-mountain-steel" />
               </div>
               <h3 className="font-display text-xl font-semibold text-foreground mb-2">Up to 5 Images</h3>
               <p className="text-muted-foreground text-sm">Showcase your item with multiple photos</p>
