@@ -1,1 +1,4 @@
-project_id = "jneflbektcqalwhgfuyo"
+project_id = "wtbknrrbmouxwbrhwwdk"
+
+[functions.network-sync]
+verify_jwt = false

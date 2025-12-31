@@ -10,67 +10,109 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "13.0.5"
+    PostgrestVersion: "14.1"
   }
   public: {
     Tables: {
       listings: {
         Row: {
           category: string
-          contact_email: string
-          contact_name: string
+          contact_email: string | null
+          contact_name: string | null
           contact_phone: string | null
           created_at: string
-          description: string
+          description: string | null
           expires_at: string | null
+          featured: boolean | null
           id: string
           images: string[] | null
+          location: string | null
           payment_status: string
-          price: number
+          price: number | null
           region: string
+          source_site: string | null
           status: string
-          stripe_payment_id: string | null
+          syndicate_to_statewide: boolean | null
           title: string
           updated_at: string
           user_id: string
         }
         Insert: {
           category: string
-          contact_email: string
-          contact_name: string
+          contact_email?: string | null
+          contact_name?: string | null
           contact_phone?: string | null
           created_at?: string
-          description: string
+          description?: string | null
           expires_at?: string | null
+          featured?: boolean | null
           id?: string
           images?: string[] | null
+          location?: string | null
           payment_status?: string
-          price: number
-          region: string
+          price?: number | null
+          region?: string
+          source_site?: string | null
           status?: string
-          stripe_payment_id?: string | null
+          syndicate_to_statewide?: boolean | null
           title: string
           updated_at?: string
           user_id: string
         }
         Update: {
           category?: string
-          contact_email?: string
-          contact_name?: string
+          contact_email?: string | null
+          contact_name?: string | null
           contact_phone?: string | null
           created_at?: string
-          description?: string
+          description?: string | null
           expires_at?: string | null
+          featured?: boolean | null
           id?: string
           images?: string[] | null
+          location?: string | null
           payment_status?: string
-          price?: number
+          price?: number | null
           region?: string
+          source_site?: string | null
           status?: string
-          stripe_payment_id?: string | null
+          syndicate_to_statewide?: boolean | null
           title?: string
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      network_sites: {
+        Row: {
+          api_key: string | null
+          created_at: string
+          domain: string
+          id: string
+          is_active: boolean | null
+          region: string
+          site_code: string
+          site_name: string
+        }
+        Insert: {
+          api_key?: string | null
+          created_at?: string
+          domain: string
+          id?: string
+          is_active?: boolean | null
+          region: string
+          site_code: string
+          site_name: string
+        }
+        Update: {
+          api_key?: string | null
+          created_at?: string
+          domain?: string
+          id?: string
+          is_active?: boolean | null
+          region?: string
+          site_code?: string
+          site_name?: string
         }
         Relationships: []
       }
@@ -80,30 +122,30 @@ export type Database = {
           created_at: string
           id: string
           listing_id: string | null
+          payment_method: string | null
           status: string
-          stripe_customer_id: string | null
-          stripe_payment_intent_id: string | null
-          user_id: string | null
+          stripe_payment_id: string | null
+          user_id: string
         }
         Insert: {
           amount: number
           created_at?: string
           id?: string
           listing_id?: string | null
+          payment_method?: string | null
           status?: string
-          stripe_customer_id?: string | null
-          stripe_payment_intent_id?: string | null
-          user_id?: string | null
+          stripe_payment_id?: string | null
+          user_id: string
         }
         Update: {
           amount?: number
           created_at?: string
           id?: string
           listing_id?: string | null
+          payment_method?: string | null
           status?: string
-          stripe_customer_id?: string | null
-          stripe_payment_intent_id?: string | null
-          user_id?: string | null
+          stripe_payment_id?: string | null
+          user_id?: string
         }
         Relationships: [
           {
@@ -117,8 +159,9 @@ export type Database = {
       }
       profiles: {
         Row: {
+          avatar_url: string | null
           created_at: string
-          email: string
+          email: string | null
           full_name: string | null
           id: string
           phone: string | null
@@ -126,8 +169,9 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          avatar_url?: string | null
           created_at?: string
-          email: string
+          email?: string | null
           full_name?: string | null
           id?: string
           phone?: string | null
@@ -135,8 +179,9 @@ export type Database = {
           user_id: string
         }
         Update: {
+          avatar_url?: string | null
           created_at?: string
-          email?: string
+          email?: string | null
           full_name?: string | null
           id?: string
           phone?: string | null
@@ -147,28 +192,25 @@ export type Database = {
       }
       site_settings: {
         Row: {
-          description: string | null
+          created_at: string
           id: string
           setting_key: string
-          setting_type: string
           setting_value: string | null
           updated_at: string
           updated_by: string | null
         }
         Insert: {
-          description?: string | null
+          created_at?: string
           id?: string
           setting_key: string
-          setting_type?: string
           setting_value?: string | null
           updated_at?: string
           updated_by?: string | null
         }
         Update: {
-          description?: string | null
+          created_at?: string
           id?: string
           setting_key?: string
-          setting_type?: string
           setting_value?: string | null
           updated_at?: string
           updated_by?: string | null
@@ -179,19 +221,19 @@ export type Database = {
         Row: {
           created_at: string
           id: string
-          role: Database["public"]["Enums"]["app_role"]
+          role: string
           user_id: string
         }
         Insert: {
           created_at?: string
           id?: string
-          role: Database["public"]["Enums"]["app_role"]
+          role?: string
           user_id: string
         }
         Update: {
           created_at?: string
           id?: string
-          role?: Database["public"]["Enums"]["app_role"]
+          role?: string
           user_id?: string
         }
         Relationships: []
@@ -201,16 +243,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      has_role: {
-        Args: {
-          _role: Database["public"]["Enums"]["app_role"]
-          _user_id: string
-        }
-        Returns: boolean
-      }
+      has_role: { Args: { check_role: string }; Returns: boolean }
     }
     Enums: {
-      app_role: "admin" | "moderator" | "user"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -337,8 +373,6 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {
-      app_role: ["admin", "moderator", "user"],
-    },
+    Enums: {},
   },
 } as const
