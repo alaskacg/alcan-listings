@@ -21,8 +21,9 @@ interface Setting {
   id: string;
   setting_key: string;
   setting_value: string | null;
-  setting_type: string;
-  description: string | null;
+  updated_at: string;
+  updated_by: string | null;
+  created_at: string;
 }
 
 const AdminSettings = () => {
@@ -96,6 +97,10 @@ const AdminSettings = () => {
     }
   };
 
+  const isSecretKey = (key: string) => {
+    return key.includes('secret') || key.includes('api_key') || key.includes('stripe');
+  };
+
   const toggleSecretVisibility = (key: string) => {
     setShowSecrets(prev => ({ ...prev, [key]: !prev[key] }));
   };
@@ -105,6 +110,7 @@ const AdminSettings = () => {
   const stripeSettings = settings.filter(s => s.setting_key.startsWith('stripe'));
   const siteSettings = settings.filter(s => ['site_name', 'contact_email'].includes(s.setting_key));
   const listingSettings = settings.filter(s => ['listing_price', 'listing_duration_days', 'enable_payments'].includes(s.setting_key));
+  const enablePaymentsSetting = getSetting('enable_payments');
 
   return (
     <AdminLayout>
@@ -146,8 +152,8 @@ const AdminSettings = () => {
                 {stripeSettings.map((setting) => (
                   <div key={setting.setting_key} className="space-y-2">
                     <Label htmlFor={setting.setting_key} className="flex items-center justify-between">
-                      <span>{setting.description || setting.setting_key}</span>
-                      {setting.setting_type === 'secret' && (
+                      <span>{setting.setting_key.replace(/_/g, ' ')}</span>
+                      {isSecretKey(setting.setting_key) && (
                         <button
                           type="button"
                           onClick={() => toggleSecretVisibility(setting.setting_key)}
@@ -159,7 +165,7 @@ const AdminSettings = () => {
                     </Label>
                     <Input
                       id={setting.setting_key}
-                      type={setting.setting_type === 'secret' && !showSecrets[setting.setting_key] ? 'password' : 'text'}
+                      type={isSecretKey(setting.setting_key) && !showSecrets[setting.setting_key] ? 'password' : 'text'}
                       value={setting.setting_value || ''}
                       onChange={(e) => updateSetting(setting.setting_key, e.target.value)}
                       placeholder={`Enter ${setting.setting_key.replace(/_/g, ' ')}`}
@@ -184,7 +190,7 @@ const AdminSettings = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {siteSettings.map((setting) => (
                   <div key={setting.setting_key} className="space-y-2">
-                    <Label htmlFor={setting.setting_key}>{setting.description || setting.setting_key}</Label>
+                    <Label htmlFor={setting.setting_key}>{setting.setting_key.replace(/_/g, ' ')}</Label>
                     <Input
                       id={setting.setting_key}
                       type="text"
@@ -210,12 +216,12 @@ const AdminSettings = () => {
 
               <div className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {listingSettings.filter(s => s.setting_type !== 'boolean').map((setting) => (
+                  {listingSettings.filter(s => s.setting_key !== 'enable_payments').map((setting) => (
                     <div key={setting.setting_key} className="space-y-2">
-                      <Label htmlFor={setting.setting_key}>{setting.description || setting.setting_key}</Label>
+                      <Label htmlFor={setting.setting_key}>{setting.setting_key.replace(/_/g, ' ')}</Label>
                       <Input
                         id={setting.setting_key}
-                        type={setting.setting_type === 'number' ? 'number' : 'text'}
+                        type="text"
                         value={setting.setting_value || ''}
                         onChange={(e) => updateSetting(setting.setting_key, e.target.value)}
                       />
@@ -224,7 +230,7 @@ const AdminSettings = () => {
                 </div>
 
                 {/* Enable Payments Toggle */}
-                {getSetting('enable_payments') && (
+                {enablePaymentsSetting && (
                   <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
                     <div>
                       <Label className="text-base">Enable Payment Processing</Label>
@@ -233,7 +239,7 @@ const AdminSettings = () => {
                       </p>
                     </div>
                     <Switch
-                      checked={getSetting('enable_payments')?.setting_value === 'true'}
+                      checked={enablePaymentsSetting.setting_value === 'true'}
                       onCheckedChange={(checked) => updateSetting('enable_payments', checked.toString())}
                     />
                   </div>

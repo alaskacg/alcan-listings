@@ -15,7 +15,8 @@ interface Payment {
   user_id: string | null;
   amount: number;
   status: string;
-  stripe_payment_intent_id: string | null;
+  stripe_payment_id: string | null;
+  payment_method: string | null;
   created_at: string;
 }
 
@@ -70,7 +71,7 @@ const AdminPayments = () => {
   };
 
   const filteredPayments = payments.filter(payment =>
-    payment.stripe_payment_intent_id?.toLowerCase().includes(search.toLowerCase()) ||
+    payment.stripe_payment_id?.toLowerCase().includes(search.toLowerCase()) ||
     payment.id.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -153,7 +154,7 @@ const AdminPayments = () => {
                       </td>
                       <td className="px-4 py-3">{getStatusBadge(payment.status)}</td>
                       <td className="px-4 py-3 text-sm font-mono text-muted-foreground">
-                        {payment.stripe_payment_intent_id || '—'}
+                        {payment.stripe_payment_id || '—'}
                       </td>
                       <td className="px-4 py-3 text-sm text-muted-foreground">
                         {new Date(payment.created_at).toLocaleDateString()}
