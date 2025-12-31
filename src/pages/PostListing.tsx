@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { Upload, X, DollarSign, AlertCircle, Loader2 } from "lucide-react";
+import { listingSchema } from "@/lib/validations";
 
 const categories = [
   { value: "vehicles", label: "Vehicles & Autos" },
@@ -62,6 +63,7 @@ const PostListing = () => {
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -145,6 +147,32 @@ const PostListing = () => {
     return uploadedUrls;
   };
 
+  const validateForm = () => {
+    const result = listingSchema.safeParse({
+      title,
+      description,
+      price: price ? parseFloat(price) : 0,
+      category,
+      region,
+      contactName,
+      contactEmail,
+      contactPhone: contactPhone || undefined,
+    });
+    
+    if (!result.success) {
+      const fieldErrors: Record<string, string> = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as string] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return false;
+    }
+    setErrors({});
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
@@ -167,10 +195,10 @@ const PostListing = () => {
       return;
     }
 
-    if (!category || !region || !title || !price || !description || !contactName || !contactEmail) {
+    if (!validateForm()) {
       toast({
-        title: "Missing Fields",
-        description: "Please fill in all required fields.",
+        title: "Validation Error",
+        description: "Please fix the errors in the form.",
         variant: "destructive",
       });
       return;
