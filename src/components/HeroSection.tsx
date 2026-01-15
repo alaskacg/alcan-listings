@@ -113,8 +113,10 @@ const HeroSection = () => {
               </Button>
             </Link>
             <Link to="/post-listing">
-              <Button variant="glass" size="lg">
-                Post Your Listing — $10
+              <Button variant="glass" size="lg" className="relative">
+                <span className="line-through opacity-60 mr-2">$10</span>
+                <span className="text-green-400 font-bold">FREE</span>
+                <span className="absolute -top-2 -right-2 bg-accent text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">BETA</span>
               </Button>
             </Link>
           </motion.div>
