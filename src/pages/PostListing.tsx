@@ -211,7 +211,7 @@ const PostListing = () => {
       const expiresAt = new Date();
       expiresAt.setDate(expiresAt.getDate() + 60);
 
-      // Create listing first
+      // Create listing - FREE during beta
       const { data: listing, error: listingError } = await supabase
         .from('listings')
         .insert({
@@ -224,8 +224,8 @@ const PostListing = () => {
           contact_name: contactName.trim(),
           contact_email: contactEmail.trim(),
           contact_phone: contactPhone.trim() || null,
-          status: 'pending',
-          payment_status: 'unpaid',
+          status: 'active', // Auto-approve during beta
+          payment_status: 'beta_free', // Mark as beta free listing
           expires_at: expiresAt.toISOString(),
         })
         .select()
@@ -246,8 +246,8 @@ const PostListing = () => {
       }
 
       toast({
-        title: "Listing Created",
-        description: "Your listing has been submitted. Payment integration coming soon - your listing will be reviewed by admin.",
+        title: "🎉 Listing Published!",
+        description: "Your FREE beta listing is now live and will remain active for 60 days!",
       });
 
       navigate('/my-listings');
@@ -282,22 +282,29 @@ const PostListing = () => {
               Post Your Listing
             </h1>
             <p className="text-muted-foreground text-sm">
-              Fill out the form below to create your listing. All listings are $10 and active for 60 days.
+              Fill out the form below to create your listing. Email verification required.
             </p>
           </div>
 
-          {/* Pricing Banner */}
-          <div className="bg-glass rounded-2xl p-6 mb-10 flex items-center justify-between">
+          {/* Beta Free Banner */}
+          <div className="bg-gradient-to-r from-accent/20 via-primary/20 to-accent/20 border-2 border-accent/50 rounded-2xl p-6 mb-10">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-accent" />
+              <div className="w-12 h-12 rounded-xl bg-accent/30 flex items-center justify-center">
+                <span className="text-2xl">🎉</span>
               </div>
-              <div>
-                <h3 className="font-semibold text-foreground text-sm">$10 per listing</h3>
-                <p className="text-xs text-muted-foreground">60 days • Up to 5 images</p>
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <h3 className="font-semibold text-foreground text-sm">FREE During Beta!</h3>
+                  <span className="text-xs bg-accent text-white px-2 py-0.5 rounded-full font-medium">BETA</span>
+                </div>
+                <p className="text-xs text-muted-foreground">60 days • Up to 5 images • Verified email required</p>
               </div>
+              <div className="text-2xl font-display font-bold text-accent line-through opacity-50">$10</div>
+              <div className="text-2xl font-display font-bold text-green-500">FREE</div>
             </div>
-            <div className="text-2xl font-display font-bold text-accent">$10</div>
+            <p className="text-xs text-muted-foreground mt-3 text-center">
+              Your listing will remain active for the full 60 days, even after beta ends!
+            </p>
           </div>
 
           {/* Form */}
@@ -477,7 +484,7 @@ const PostListing = () => {
                 <div className="space-y-4">
                   <h3 className="font-semibold text-foreground text-sm">Important Information</h3>
                   <ul className="text-xs text-muted-foreground space-y-2 list-disc list-inside">
-                    <li>Your listing will be active for 60 days from the date of purchase</li>
+                    <li>Your FREE beta listing will be active for 60 days from date of posting</li>
                     <li>Listings are automatically removed after expiration unless renewed</li>
                     <li>Alaska Listings LLC is a listing service only and does not participate in transactions</li>
                     <li>All transactions are between buyer and seller directly</li>
