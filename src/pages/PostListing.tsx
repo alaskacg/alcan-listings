@@ -245,6 +245,19 @@ const PostListing = () => {
         }
       }
 
+      // Push listing to ecosystem hub (fire and forget - don't block on this)
+      if (listing) {
+        supabase.functions.invoke('ecosystem-sync', {
+          body: { action: 'push_listing', listing_id: listing.id }
+        }).then(({ data, error }) => {
+          if (error) {
+            console.error('Ecosystem sync failed:', error);
+          } else {
+            console.log('Ecosystem sync result:', data);
+          }
+        }).catch(err => console.error('Ecosystem sync error:', err));
+      }
+
       toast({
         title: "🎉 Listing Published!",
         description: "Your FREE beta listing is now live and will remain active for 60 days!",
