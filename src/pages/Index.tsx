@@ -7,6 +7,7 @@ import CTASection from "@/components/CTASection";
 import TrustIndicators from "@/components/TrustIndicators";
 import AlcanNewsPromo from "@/components/AlcanNewsPromo";
 import SEOHead from "@/components/SEOHead";
+import EmpireNetwork from "@/components/EmpireNetwork";
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
         <AlcanNewsPromo />
         <RecentListings />
         <CTASection />
+        <EmpireNetwork currentSite="alcan-listings" />
       </main>
       <Footer />
     </div>
