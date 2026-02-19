@@ -269,7 +269,7 @@ const PostListing = () => {
       const { loadStripe } = await import('@stripe/stripe-js');
       const stripe = await loadStripe('pk_live_51Sa49S2OuXdsEk61uiFJYFAwecGziydOVZHFAdxQaEtVoUPD17bi9P58E8KD3pU1OHByS2YA4sVCBb5Nu8KFdo9H00YrgzjniG');
       if (stripe) {
-        await stripe.redirectToCheckout({
+        await (stripe as any).redirectToCheckout({
           lineItems: [{ price: 'price_1T2L7K2OuXdsEk61B2khAo0m', quantity: 1 }],
           mode: 'payment',
           successUrl: `${window.location.origin}/listing-success?listing_id=${listing.id}`,
