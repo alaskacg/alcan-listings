@@ -182,7 +182,10 @@ const PostListing = () => {
         description: "Please sign in to post a listing.",
         variant: "destructive",
       });
-      navigate('/login');
+      // Redirect to Stripe for payment
+      const email = encodeURIComponent(contactEmail);
+      window.location.href = `https://buy.stripe.com/5kQcMYbUmdczcai0iK6J200?prefilled_email=${email}`;
+return;
       return;
     }
 
@@ -211,7 +214,7 @@ const PostListing = () => {
       const expiresAt = new Date();
       expiresAt.setDate(expiresAt.getDate() + 60);
 
-      // Create listing - FREE during beta
+      // Create listing - $10 • 60 days
       const { data: listing, error: listingError } = await supabase
         .from('listings')
         .insert({
@@ -224,8 +227,8 @@ const PostListing = () => {
           contact_name: contactName.trim(),
           contact_email: contactEmail.trim(),
           contact_phone: contactPhone.trim() || null,
-          status: 'active', // Auto-approve during beta
-          payment_status: 'beta_free', // Mark as beta free listing
+          status: 'pending_payment',
+          payment_status: 'pending', // Mark as listing
           expires_at: expiresAt.toISOString(),
         })
         .select()
@@ -260,10 +263,12 @@ const PostListing = () => {
 
       toast({
         title: "🎉 Listing Published!",
-        description: "Your FREE beta listing is now live and will remain active for 60 days!",
+        description: "Your listing is now live and will remain active for 60 days!",
       });
-
-      navigate('/my-listings');
+      // Redirect to Stripe for payment
+      const email = encodeURIComponent(contactEmail);
+      window.location.href = `https://buy.stripe.com/5kQcMYbUmdczcai0iK6J200?prefilled_email=${email}`;
+return;
     } catch (error) {
       console.error('Error creating listing:', error);
       toast({
@@ -497,7 +502,7 @@ const PostListing = () => {
                 <div className="space-y-4">
                   <h3 className="font-semibold text-foreground text-sm">Important Information</h3>
                   <ul className="text-xs text-muted-foreground space-y-2 list-disc list-inside">
-                    <li>Your FREE beta listing will be active for 60 days from date of posting</li>
+                    <li>Your listing will be active for 60 days from date of posting</li>
                     <li>Listings are automatically removed after expiration unless renewed</li>
                     <li>Alaska Listings LLC is a listing service only and does not participate in transactions</li>
                     <li>All transactions are between buyer and seller directly</li>

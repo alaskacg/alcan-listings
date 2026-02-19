@@ -24,6 +24,7 @@ import AdminPayments from "./pages/admin/AdminPayments";
 import AdminSettings from "./pages/admin/AdminSettings";
 import NotFound from "./pages/NotFound";
 
+import ListingSuccess from "@/pages/ListingSuccess";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -54,7 +55,8 @@ const App = () => (
               <Route path="/admin/payments" element={<AdminPayments />} />
               <Route path="/admin/settings" element={<AdminSettings />} />
               {/* Catch-all */}
-              <Route path="*" element={<NotFound />} />
+              <Route path="/listing-success" element={<ListingSuccess />} />
+          <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
         </TooltipProvider>
