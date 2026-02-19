@@ -301,27 +301,6 @@ const PostListing = () => {
             </p>
           </div>
 
-          {/* Beta Free Banner */}
-          <div className="bg-gradient-to-r from-accent/20 via-primary/20 to-accent/20 border-2 border-accent/50 rounded-2xl p-6 mb-10">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-accent/30 flex items-center justify-center">
-                <span className="text-2xl">🎉</span>
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-semibold text-foreground text-sm">FREE During Beta!</h3>
-                  <span className="text-xs bg-accent text-white px-2 py-0.5 rounded-full font-medium">BETA</span>
-                </div>
-                <p className="text-xs text-muted-foreground">60 days • Up to 5 images • Verified email required</p>
-              </div>
-              <div className="text-2xl font-display font-bold text-accent line-through opacity-50">$10</div>
-              <div className="text-2xl font-display font-bold text-green-500">FREE</div>
-            </div>
-            <p className="text-xs text-muted-foreground mt-3 text-center">
-              Your listing will remain active for the full 60 days, even after beta ends!
-            </p>
-          </div>
-
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Basic Info */}
