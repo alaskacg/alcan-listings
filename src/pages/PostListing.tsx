@@ -259,13 +259,24 @@ const PostListing = () => {
       }
 
       toast({
-        title: "🎉 Listing Published!",
+        title: "Redirecting to payment...",
         description: "Your listing is now live and will remain active for 60 days!",
       });
-      // Redirect to Stripe for payment
-      const email = encodeURIComponent(contactEmail);
-      window.location.href = `https://buy.stripe.com/5kQcMYbUmdczcai0iK6J200?prefilled_email=${email}`;
-        return;
+      // Store listing ID for post-payment activation
+      localStorage.setItem('pending_listing_id', listing.id);
+
+      // Redirect to Stripe Checkout
+      const { loadStripe } = await import('@stripe/stripe-js');
+      const stripe = await loadStripe('pk_live_51Sa49S2OuXdsEk61uiFJYFAwecGziydOVZHFAdxQaEtVoUPD17bi9P58E8KD3pU1OHByS2YA4sVCBb5Nu8KFdo9H00YrgzjniG');
+      if (stripe) {
+        await stripe.redirectToCheckout({
+          lineItems: [{ price: 'price_1T2L7K2OuXdsEk61B2khAo0m', quantity: 1 }],
+          mode: 'payment',
+          successUrl: `${window.location.origin}/listing-success?listing_id=${listing.id}`,
+          cancelUrl: `${window.location.origin}/listing-cancel?listing_id=${listing.id}`,
+        });
+      }
+      return;
     } catch (error) {
       console.error('Error creating listing:', error);
       toast({
@@ -517,7 +528,7 @@ const PostListing = () => {
                   Creating Listing...
                 </>
               ) : (
-                "Submit Listing"
+                "Pay & Publish — $10"
               )}
             </Button>
           </form>

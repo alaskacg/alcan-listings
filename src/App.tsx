@@ -25,6 +25,7 @@ import AdminSettings from "./pages/admin/AdminSettings";
 import NotFound from "./pages/NotFound";
 
 import ListingSuccess from "@/pages/ListingSuccess";
+import ListingCancel from "@/pages/ListingCancel";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -56,6 +57,7 @@ const App = () => (
               <Route path="/admin/settings" element={<AdminSettings />} />
               {/* Catch-all */}
               <Route path="/listing-success" element={<ListingSuccess />} />
+            <Route path="/listing-cancel" element={<ListingCancel />} />
           <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
